@@ -3,6 +3,7 @@ export interface WeatherResponse {
   latitude: number
   longitude: number
   timezone: string
+
   current: {
     time: string
     temperature_2m: number
@@ -14,10 +15,12 @@ export interface WeatherResponse {
     cloud_cover: number
     pressure_msl: number
     wind_speed_10m: number
+    wind_gusts_10m: number
     wind_direction_10m: number
     uv_index: number
     visibility: number
   }
+
   hourly: {
     time: string[]
     temperature_2m: number[]
@@ -25,6 +28,7 @@ export interface WeatherResponse {
     relative_humidity_2m: number[]
     uv_index: number[]
   }
+
   daily: {
     time: string[]
     weather_code: number[]
