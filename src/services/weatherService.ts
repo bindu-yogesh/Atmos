@@ -13,6 +13,9 @@ const GEOCODING_API =
 const AIR_QUALITY_API =
   'https://air-quality-api.open-meteo.com/v1/air-quality'
 
+const HISTORICAL_WEATHER_API =
+  'https://archive-api.open-meteo.com/v1/archive'
+
 export interface AirQualityResponse {
   current: {
     time: string
@@ -25,6 +28,17 @@ export interface AirQualityResponse {
     us_aqi: (number | null)[]
     pm2_5: (number | null)[]
     pm10: (number | null)[]
+  }
+}
+
+export interface HistoricalClimateResponse {
+  latitude: number
+  longitude: number
+  timezone: string
+  daily: {
+    time: string[]
+    temperature_2m_mean: (number | null)[]
+    precipitation_sum: (number | null)[]
   }
 }
 
@@ -140,12 +154,45 @@ export async function getAirQuality(
   )
 
   if (!response.ok) {
-    throw new Error(
-      'Air quality data is unavailable.'
-    )
+    throw new Error('Air quality data is unavailable.')
   }
 
   return response.json() as Promise<AirQualityResponse>
+}
+
+export async function getHistoricalClimate(
+  latitude: number,
+  longitude: number
+): Promise<HistoricalClimateResponse> {
+  const end = new Date()
+  end.setUTCDate(end.getUTCDate() - 1)
+
+  const start = new Date(end)
+  start.setUTCFullYear(start.getUTCFullYear() - 5)
+
+  const formatDate = (date: Date) =>
+    date.toISOString().slice(0, 10)
+
+  const params = new URLSearchParams({
+    latitude: String(latitude),
+    longitude: String(longitude),
+    start_date: formatDate(start),
+    end_date: formatDate(end),
+    daily: 'temperature_2m_mean,precipitation_sum',
+    timezone: 'auto',
+  })
+
+  const response = await fetch(
+    `${HISTORICAL_WEATHER_API}?${params}`
+  )
+
+  if (!response.ok) {
+    throw new Error(
+      'Unable to fetch historical climate data. Please try again.'
+    )
+  }
+
+  return response.json() as Promise<HistoricalClimateResponse>
 }
 
 export async function getCurrentCity(
