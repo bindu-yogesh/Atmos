@@ -1,3 +1,4 @@
+import WeatherMap from './WeatherMap'
 import WeatherEffects from './WeatherEffects'
 import { useEffect, useState } from 'react'
 import type { ReactNode } from 'react'
@@ -765,7 +766,19 @@ function App() {
               <Metric icon={<Gauge />} label="Pressure" value={current ? String(Math.round(current.pressure_msl)) : '--'} unit="hPa" detail="Sea-level pressure" tone="orange" />
             </div>
           </section>
-
+          <WeatherMap
+            latitude={coordinates.latitude}
+            longitude={coordinates.longitude}
+            location={location}
+            temperature={temperature ?? undefined}
+            unit={unit}
+            dark={dark}
+            onLocationSelect={(latitude, longitude) => {
+              setCoordinates({ latitude, longitude })
+              setLocation('Selected map location')
+              setError('')
+            }}
+          />
           <section className="section-block">
             <div className="section-heading">
               <div>

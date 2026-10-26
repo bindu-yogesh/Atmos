@@ -1305,3 +1305,376 @@ input:focus-visible {
     opacity: 0.22;
   }
 }
+
+/* =========================================
+   ATMOS — PREMIUM UI POLISH
+   Add at the bottom of App.css
+========================================= */
+
+/* Fix the partly-cloudy theme selector */
+.app-shell.weather-partly-cloudy {
+  --glow: rgba(106, 142, 255, 0.16);
+  --chart-accent: #8da9ff;
+}
+
+/* Give panels a cleaner, more premium finish */
+.panel {
+  border-color: var(--border);
+  box-shadow:
+    0 8px 28px rgba(0, 0, 0, 0.035),
+    inset 0 1px 0 rgba(255, 255, 255, 0.025);
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.4s ease;
+}
+
+.app-shell.light .panel {
+  box-shadow:
+    0 8px 28px rgba(35, 54, 90, 0.045),
+    0 1px 2px rgba(35, 54, 90, 0.025);
+}
+
+/* Sharper, more dimensional main weather card */
+.weather-hero {
+  border-color: color-mix(in srgb, var(--accent) 18%, var(--border));
+  box-shadow:
+    0 18px 45px rgba(0, 0, 0, 0.055),
+    inset 0 1px 0 rgba(255, 255, 255, 0.035);
+}
+
+.app-shell.light .weather-hero {
+  box-shadow:
+    0 18px 45px rgba(52, 76, 125, 0.075),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+/* Improve card interactions without excessive movement */
+.metric-card,
+.hour-item,
+.week-row,
+.aqi-card,
+.chart-panel,
+.rainfall-panel {
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.metric-card:hover,
+.hour-item:hover {
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.055);
+}
+
+.app-shell.light .metric-card:hover,
+.app-shell.light .hour-item:hover {
+  box-shadow: 0 8px 22px rgba(52, 76, 125, 0.075);
+}
+
+/* More refined navigation */
+.nav-item {
+  min-height: 42px;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.nav-item:hover {
+  transform: translateX(2px);
+}
+
+.nav-item.active {
+  border-color: color-mix(in srgb, var(--accent) 20%, var(--border));
+}
+
+/* Cleaner search and action controls */
+.search-box,
+.location-button,
+.theme-toggle,
+.unit-toggle,
+.menu-toggle,
+.favorite-button,
+.refresh-button {
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.search-box:focus-within {
+  border-color: color-mix(in srgb, var(--accent) 65%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+.location-button:hover,
+.refresh-button:hover,
+.favorite-button:hover {
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+}
+
+.theme-toggle:hover,
+.unit-toggle:hover,
+.favorite-button:hover,
+.refresh-button:hover {
+  transform: translateY(-2px);
+}
+
+/* Better chart and forecast separation */
+.chart-panel,
+.weekly-panel,
+.rainfall-panel,
+.aqi-card {
+  border-color: color-mix(in srgb, var(--border) 90%, var(--accent));
+}
+
+.week-row {
+  transition: background-color 0.2s ease;
+}
+
+.week-row:hover {
+  background: color-mix(in srgb, var(--accent) 4%, transparent);
+}
+
+/* Improve small labels and section hierarchy */
+.eyebrow,
+.section-kicker,
+.workspace-label {
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+.weather-description,
+.metric-value,
+.temperature {
+  text-wrap: balance;
+}
+
+/* Make weather illustrations feel more integrated */
+.weather-illustration {
+  position: relative;
+  z-index: 1;
+}
+
+.weather-illustration svg {
+  transition: transform 0.35s ease;
+}
+
+.weather-hero:hover .weather-illustration svg {
+  transform: scale(1.045);
+}
+
+/* Keep text and controls above animated weather effects */
+.main-content {
+  position: relative;
+  z-index: 1;
+}
+
+.sidebar {
+  z-index: 20;
+}
+
+/* Mobile polish */
+@media (max-width: 560px) {
+  .panel {
+    border-radius: 14px;
+  }
+
+  .weather-hero {
+    border-radius: 16px;
+  }
+
+  .section-block {
+    margin-top: 29px;
+  }
+
+  .metric-card:hover,
+  .hour-item:hover,
+  .nav-item:hover {
+    transform: none;
+  }
+}
+
+/* Accessibility: respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .nav-item,
+  .metric-card,
+  .hour-item,
+  .week-row,
+  .weather-illustration svg,
+  .theme-toggle,
+  .unit-toggle,
+  .favorite-button,
+  .refresh-button {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+/* =========================================
+   ATMOS — PREMIUM UI POLISH
+========================================= */
+
+.panel {
+  border-color: var(--border);
+  box-shadow:
+    0 8px 28px rgba(0, 0, 0, 0.035),
+    inset 0 1px 0 rgba(255, 255, 255, 0.025);
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.4s ease;
+}
+
+.app-shell.light .panel {
+  box-shadow: 0 8px 28px rgba(35, 54, 90, 0.045);
+}
+
+.weather-hero {
+  border-color: color-mix(in srgb, var(--accent) 18%, var(--border));
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.055);
+}
+
+.app-shell.light .weather-hero {
+  box-shadow: 0 18px 45px rgba(52, 76, 125, 0.075);
+}
+
+.metric-card,
+.hour-item,
+.week-row,
+.aqi-card,
+.chart-panel,
+.rainfall-panel {
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.metric-card:hover,
+.hour-item:hover {
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.055);
+}
+
+.app-shell.light .metric-card:hover,
+.app-shell.light .hour-item:hover {
+  box-shadow: 0 8px 22px rgba(52, 76, 125, 0.075);
+}
+
+.nav-item {
+  min-height: 42px;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.nav-item:hover {
+  transform: translateX(2px);
+}
+
+.nav-item.active {
+  border-color: color-mix(in srgb, var(--accent) 20%, var(--border));
+}
+
+.search-box:focus-within {
+  border-color: color-mix(in srgb, var(--accent) 65%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+.location-button,
+.refresh-button,
+.favorite-button {
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.location-button:hover,
+.refresh-button:hover,
+.favorite-button:hover {
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+}
+
+.theme-toggle:hover,
+.unit-toggle:hover,
+.favorite-button:hover,
+.refresh-button:hover {
+  transform: translateY(-2px);
+}
+
+.week-row:hover {
+  background: color-mix(in srgb, var(--accent) 4%, transparent);
+}
+
+h1,
+h2,
+.weather-description,
+.metric-value,
+.temperature {
+  text-wrap: balance;
+}
+
+.weather-illustration {
+  position: relative;
+  z-index: 1;
+}
+
+.weather-illustration svg {
+  transition: transform 0.35s ease;
+}
+
+.weather-hero:hover .weather-illustration svg {
+  transform: scale(1.045);
+}
+
+/* Keep layout and weather effects layered correctly */
+.main-content {
+  position: relative;
+  z-index: 1;
+}
+
+.sidebar {
+  z-index: 20;
+}
+
+/* Mobile polish */
+@media (max-width: 560px) {
+  .panel {
+    border-radius: 14px;
+  }
+
+  .weather-hero {
+    border-radius: 16px;
+  }
+
+  .metric-card:hover,
+  .hour-item:hover,
+  .nav-item:hover {
+    transform: none;
+  }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .nav-item,
+  .metric-card,
+  .hour-item,
+  .week-row,
+  .weather-illustration svg,
+  .theme-toggle,
+  .unit-toggle,
+  .favorite-button,
+  .refresh-button {
+    transition: none !important;
+    transform: none !important;
+  }
+}
